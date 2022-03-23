@@ -1,0 +1,12 @@
+<button [ngStyle]="{
+    'float': 'right'
+}" mat-button mat-dialog-close><i class="fa-solid fa-xmark"></i></button>
+<h1 mat-dialog-title>Add new albom</h1>
+<input (change)="onImageValueChange($event)" type="file" />
+<mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Enter albom title</mat-label>
+    <input #titleInp matInput placeholder="Enter here">
+</mat-form-field>
+<div mat-dialog-actions>
+    <button (click)="onAlbomAddBtnClick(titleInp.value)" color="primary" mat-button mat-dialog-close>Add</button>
+</div>

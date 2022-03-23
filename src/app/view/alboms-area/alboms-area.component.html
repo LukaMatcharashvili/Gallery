@@ -1,0 +1,47 @@
+<article>
+    <div [ngStyle]="{
+        'width': '100%',
+        'display': 'flex',
+        'justify-content': 'center'
+    }">
+        <h1>Alboms</h1>
+    </div>
+    <div [ngStyle]="{
+        'width': '100%',
+        'display': 'flex',
+        'justify-content': 'center',
+        'flex-wrap': 'wrap'
+    }">
+        <mat-form-field appearance="fill">
+            <mat-label>Sort by date</mat-label>
+            <mat-select name="food">
+                <mat-option (click)="onSortBtnClick()">
+                    Sort
+                </mat-option>
+                <mat-option (click)="onUnSortBtnClick()">
+                    unSort
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Filter with title</mat-label>
+            <input (input)="onFilterChange()" [(ngModel)]="filterTitle" matInput type="text">
+            <button (click)="filterTitle=''" (click)="onFilterChange()" *ngIf="filterTitle" matSuffix mat-icon-button aria-label="Clear">
+              <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="alboms-area d-flex flex-wrap m-auto mt-5">
+        <div class="add-albom-box">
+            <button (click)="onAlbomAddBtnClick()" class="add-albom-btn" mat-button color="primary"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <div *ngFor="let albom of albomsList" class="albom-box">
+            <div [ngStyle]="{
+                'width':'100%',
+                'height':'100%'
+            }" [style.background-image]="'url('+albom.image+')'" routerLink="/image-area/{{albom.key}}"></div>
+            <button (click)="onAlbomDeleteAlertBtnClick(albom.key)" class="close-btn" mat-button color="primary"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="title">{{albom.title}}</h2>
+        </div>
+    </div>
+</article>

@@ -1,0 +1,19 @@
+<form [formGroup]="formData" *ngIf="formData" class="example-form">
+    <h1>Log In</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+    <div class="button-group">
+        <a routerLink="/register">Register instead</a>
+        <button (click)="onUserLogIn()" mat-raised-button color="primary">Log In</button>
+    </div>
+    <a routerLink="/forgot-password">Forgot Password?</a>
+</form>

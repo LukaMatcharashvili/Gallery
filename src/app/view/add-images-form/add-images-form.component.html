@@ -1,0 +1,15 @@
+<h1>Add new image</h1>
+<form #form="ngForm" [formGroup]="formData" class="d-flex flex-column align-items-center">
+    <input (change)="onImageValueChange($event)" class="mb-5" type="file" />
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Enter Image title</mat-label>
+        <input formControlName="title" matInput placeholder="Enter here">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Enter Image description</mat-label>
+        <input formControlName="description" matInput placeholder="Enter here">
+    </mat-form-field>
+    <div>
+        <button type="button" (click)="onAddImageBtnClick()" [disabled]="form.invalid" color="primary" mat-button>Add</button>
+    </div>
+</form>
