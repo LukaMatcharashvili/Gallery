@@ -1,8 +1,10 @@
 <div mat-dialog-content>
-    <h1>{{title}}</h1>
+    <h1>{{imageData.title}}</h1>
     <button [ngStyle]="{
         'float': 'right'
     }" mat-button mat-dialog-close><i class="fa-solid fa-xmark"></i></button>
-    <img [src]="imageUrl">
-    <h3>{{description}}</h3>
+    <div class="image-box" [ngStyle]="{
+        'width': '100%'
+    }"><img [src]="imageData.imageUrl"></div>
+    <h3>{{imageData.description}}</h3>
 </div>

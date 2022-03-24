@@ -1,0 +1,57 @@
+:host {
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 56px;
+    margin: 15px 5px;
+    display: flex;
+}
+
+.favorite-box {
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    width: 250px;
+    height: 200px;
+    border: black solid 1px;
+    border-radius: 5px;
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 20px;
+    color: black;
+}
+
+.title {
+    color: white;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 0;
+    transition: 1s;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+
+.favorite-box:hover .title {
+    opacity: 1;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    opacity: 0;
+    transition: 1s;
+}
+
+.favorite-box:hover .close-btn {
+    opacity: 1;
+    z-index: 2;
+}

@@ -3,6 +3,7 @@
         <mat-list>
             <mat-list-item (click)="drawer.toggle()" routerLink="/" class="mt-3">Home</mat-list-item>
             <mat-list-item routerLink="/albom-area" (click)="drawer.toggle()" class="mt-3">Gallery</mat-list-item>
+            <mat-list-item routerLink="/favorites" (click)="drawer.toggle()" class="mt-3">Favorites</mat-list-item>
             <mat-divider></mat-divider>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
@@ -10,8 +11,8 @@
                         User
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <mat-list-item (click)="drawer.toggle()" routerLink="/register" class="mt-3">Register</mat-list-item>
-                <mat-list-item (click)="drawer.toggle()" routerLink="/login" class="mt-3">LogIn</mat-list-item>
+                <mat-list-item *ngIf="afterLoginDisplay" (click)="drawer.toggle()" routerLink="/register" class="mt-3">Register</mat-list-item>
+                <mat-list-item *ngIf="afterLoginDisplay" (click)="drawer.toggle()" routerLink="/login" class="mt-3">LogIn</mat-list-item>
                 <mat-list-item (click)="drawer.toggle()" (click)="onUserLogOut()" class="mt-3">LogOut</mat-list-item>
                 <mat-list-item (click)="drawer.toggle()" (click)="onUserDeleteAlertOpen()" class="mt-3">Delete User</mat-list-item>
             </mat-expansion-panel>
@@ -28,14 +29,17 @@
                     <button routerLink="/albom-area" mat-button>Gallery</button>
                     <button mat-button [matMenuTriggerFor]="menu"><i class="fa-solid fa-user"></i></button>
                     <mat-menu #menu="matMenu">
-                        <button routerLink="/register" mat-menu-item>Register</button>
-                        <button routerLink="/login" mat-menu-item>LogIn</button>
+                        <button *ngIf="afterLoginDisplay" routerLink="/register" mat-menu-item>Register</button>
+                        <button *ngIf="afterLoginDisplay" routerLink="/login" mat-menu-item>LogIn</button>
                         <button (click)="onUserLogOut()" mat-menu-item>LogOut</button>
                         <button (click)="onUserDeleteAlertOpen()" mat-menu-item>Delete</button>
                     </mat-menu>
                 </div>
             </nav>
         </div>
+        <article *ngIf="loading" class="loading">
+            <mat-spinner></mat-spinner>
+        </article>
         <router-outlet></router-outlet>
     </mat-drawer-content>
 </mat-drawer-container>

@@ -7,6 +7,7 @@ import { LoginPgComponent } from './user/login-pg/login-pg.component';
 import { RegisterPgComponent } from './user/register-pg/register-pg.component';
 import { AddImagesFormComponent } from './view/add-images-form/add-images-form.component';
 import { AlbomsAreaComponent } from './view/alboms-area/alboms-area.component';
+import { FavoritesComponent } from './view/favorites/favorites.component';
 import { HomePgComponent } from './view/home-pg/home-pg.component';
 import { ImagesAreaComponent } from './view/images-area/images-area.component';
 import { UpdateImageComponent } from './view/update-image/update-image.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:'albom-area', canActivate:[GuardService], component:AlbomsAreaComponent},
   {path:'image-area/:key', canActivate:[GuardService], component:ImagesAreaComponent},
   {path:'add-image/:key',  canActivate:[GuardService], component:AddImagesFormComponent},
-  {path:'update-image/:albomKey/:imageKey', canActivate:[GuardService], component:UpdateImageComponent}
+  {path:'update-image/:albomKey/:imageKey', canActivate:[GuardService], component:UpdateImageComponent},
+  {path:'favorites',canActivate:[GuardService], component:FavoritesComponent}
 ];
 
 @NgModule({

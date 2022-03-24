@@ -4,6 +4,18 @@
     border: none;
 }
 
+.loading {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(222, 222, 222, 0.5);
+}
+
 mat-drawer {
     width: 40%;
 }

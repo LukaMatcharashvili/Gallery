@@ -11,12 +11,13 @@ import { InspectImageComponent } from '../inspect-image/inspect-image.component'
 @Component({
   selector: 'app-images-area',
   templateUrl: './images-area.component.html',
-  styleUrls: ['./images-area.component.css']
+  styleUrls: ['./images-area.component.css'],
 })
 export class ImagesAreaComponent implements OnInit {
   imagesList:any[] = [];
   tempimagesList:any[] = [];
   filterTitle!:any;
+  albomTitle:string = "";
   key:string = "";
   constructor(
     private dialog:MatDialog,
@@ -29,10 +30,20 @@ export class ImagesAreaComponent implements OnInit {
 
   ngOnInit(): void {
     this.readAllImages();
+    this.readAlbomTitle();
   }
+  readAlbomTitle(){
+    this.activatedRoute.params.subscribe((params:Params) => {
+      this.key = params['key'];
+    })
+    this.db.getAlbomByKey(this.key).subscribe((response:any) => {
+      this.albomTitle = response.title
+    })
+  }
+
   readAllImages(){
     this.activatedRoute.params.subscribe((params:Params) => {
-      this.key = params['key']
+      this.key = params['key'];
     })
     let images = this.db.getAlbomsAllImages(this.key)
     images.subscribe((response) => {
@@ -40,6 +51,7 @@ export class ImagesAreaComponent implements OnInit {
       this.tempimagesList = response
     })
   }
+
   goToAddImageAreaBtnClick(){
     this.activatedRoute.params.subscribe((params:Params) => {
       this.key = params['key']
@@ -83,5 +95,17 @@ export class ImagesAreaComponent implements OnInit {
       this.key = params['key']
     })
     this.router.navigate(['update-image', this.key, imageKey])
+  }
+  
+  addAndRemoveFromFavImage(favStatus:boolean,imageKey:string, data:any){
+      let albomKey:any;
+      this.activatedRoute.params.subscribe((params:Params) => {
+        albomKey = params['key']
+      })
+      data.favorite = !data.favorite;
+      let rem = this.db.removeOrAddFavImage(albomKey, imageKey);
+      setTimeout(() => {
+        rem.unsubscribe()
+      }, 1);
   }
 }

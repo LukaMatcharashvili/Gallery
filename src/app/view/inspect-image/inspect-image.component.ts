@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getImage } from 'src/app/models/updateImage-model';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ImagesService } from 'src/app/services/images.service';
 
@@ -8,23 +9,22 @@ import { ImagesService } from 'src/app/services/images.service';
   styleUrls: ['./inspect-image.component.css']
 })
 export class InspectImageComponent implements OnInit {
-
-  constructor(
-    private db:DatabaseService,
-    private imagesService:ImagesService) { }
-
-  imageUrl:string = "";
-  description:string = "";
-  title:string = "";
   imageKey:string = "";
   albomKey:string = "";
+  constructor(
+    private db:DatabaseService,
+    private imagesService:ImagesService)
+  { }
+  
+  imageData:getImage = new getImage()
+  
   ngOnInit(): void {
     this.albomKey = this.imagesService.albomKey;
     this.imageKey = this.imagesService.imageKey;
     this.db.getImage(this.albomKey, this.imageKey).subscribe((response:any) => {
-      this.imageUrl = response.image;
-      this.description = response.description;
-      this.title = response.title;
+      this.imageData.imageUrl = response.image;
+      this.imageData.description = response.description;
+      this.imageData.title = response.title;
     })
   }
 

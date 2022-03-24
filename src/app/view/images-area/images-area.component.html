@@ -9,7 +9,7 @@
     <div [ngStyle]="{
         'width': '100%',
         'display': 'flex',
-        'justify-content': 'center',
+        'justify-content': 'space-evenly',
         'flex-wrap': 'wrap'
     }">
         <mat-form-field appearance="fill">
@@ -31,6 +31,9 @@
             </button>
         </mat-form-field>
     </div>
+    <div class="albom-title-box">
+        <h2 class="albom-title">{{albomTitle}}</h2>
+    </div>
     <div class="images-area d-flex flex-wrap m-auto mt-5">
         <div class="add-image-box">
             <button (click)="goToAddImageAreaBtnClick()" class="add-image-btn" mat-button color="primary"><i class="fa-solid fa-plus"></i></button>
@@ -42,8 +45,8 @@
             }"></div>
             <button (click)="onImageDeleteAlertBtnClick(image.key)" class="close-btn hovers" mat-button color="primary"><i class="fa-solid fa-xmark"></i></button>
             <button (click)="onImageUpdateFormOpenBtnClick(image.key)" class="update-btn hovers" mat-button color="primary"><i class="fa-solid fa-pen"></i></button>
-            <button class="fav-btn hovers" mat-button color="primary"><i class="fa-solid fa-heart"></i><i class="fa-regular fa-heart d-none"></i></button>
-            <h2 [ngStyle]="{
+            <button (click)="addAndRemoveFromFavImage(image.favorite,image.key, image)" class="fav-btn hovers" mat-button color="primary"><i *ngIf="image.favorite"  class="fa-solid fa-heart"></i><i *ngIf="!image.favorite" class="fa-regular fa-heart"></i></button>
+            <h2 (click)="onImageInspectBtnClick(image.key)" [ngStyle]="{
                 'width': '100%'
             }" class="title hovers">{{image.title}}</h2>
             <h3 class="hovers"><strong>{{image.description | slice:0:20}}...</strong></h3>

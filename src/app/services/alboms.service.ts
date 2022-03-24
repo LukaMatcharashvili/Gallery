@@ -7,4 +7,6 @@ export class AlbomsService {
 
   constructor() { }
   public albomKey!:any;
+
+  public albomTitleEmitter:EventEmitter<any> = new EventEmitter()
 }

@@ -3,6 +3,10 @@
 }" mat-button mat-dialog-close><i class="fa-solid fa-xmark"></i></button>
 <h1 mat-dialog-title>Are you absolutely sure?</h1>
 <p>This action is irreversible!</p>
-<div mat-dialog-actions>
-    <button (click)="onAlbomDelete()" color="primary" mat-button mat-dialog-close>I understand the consequences, delete this repository</button>
+<div [ngStyle]="{
+    'width': '100%'
+}" mat-dialog-actions>
+    <button [ngStyle]="{
+        'width': '100%'
+    }" (click)="onAlbomDelete()" color="primary" mat-dialog-close mat-button>I understand the consequences,<br>delete this album.</button>
 </div>

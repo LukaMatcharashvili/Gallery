@@ -44,6 +44,7 @@ export class UpdateImageComponent implements OnInit {
     title: new FormControl(response.title),
     description: new FormControl(response.description),
     date: new FormControl(new Date().getTime()),
+    favorite: new FormControl(response.favorite)
   })
  }
 

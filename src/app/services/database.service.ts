@@ -13,10 +13,17 @@ export class DatabaseService {
     let uid = localStorage['uid']
     this.albomsRef = this.db.list('alboms/' + uid);
   }
+
   addAlbom(formData: any) {
     return this.albomsRef.push(formData);
   }
 
+  getAlbomByKey(key:string){
+    let uid = localStorage['uid'];
+    let albomByKeyRef = this.db.object('alboms/' + uid + '/' + key);
+    return albomByKeyRef.valueChanges()
+  }
+  
   getUsersAllAlbom() {
     let uid = localStorage['uid']
     let alboms:AngularFireList<any> = this.db.list('alboms/' + uid);
@@ -35,7 +42,7 @@ export class DatabaseService {
     return imagesRef.snapshotChanges()
     .pipe(
       map((changes) =>
-      changes.map((c) => ({ key: c.payload.key, title: c.payload.val().title, description: c.payload.val().description, image: c.payload.val().image, date: c.payload.val().date }))
+      changes.map((c) => ({ key: c.payload.key, title: c.payload.val().title, description: c.payload.val().description, image: c.payload.val().image, date: c.payload.val().date, favorite: c.payload.val().favorite }))
       )
     )
   }
@@ -72,4 +79,18 @@ export class DatabaseService {
     let imageByKeyRef = this.db.object('images/' + uid + '/' + albomKey + '/' + imageKey);
     return imageByKeyRef.update(formData)
   }
+
+  getFavImages(){
+    let uid = localStorage['uid'];
+    let imagesRef:AngularFireList<any> = this.db.list('images/' + uid);
+    return imagesRef.snapshotChanges()
+    
+  }
+  removeOrAddFavImage(albomKey:any, imageKey:any){
+    return this.getImage(albomKey, imageKey).subscribe((response:any) => {
+      response.favorite = !response.favorite;
+      this.imageUpdate(response, albomKey, imageKey)
+    })
+  }
 }
+ 

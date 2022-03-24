@@ -11,6 +11,21 @@ h1 {
     display: flex;
 }
 
+.albom-title {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 56px;
+    margin: 15px 5px;
+    display: flex;
+}
+
+.albom-title-box {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
 .images-area {
     width: 80%;
     margin-left: 50px;
@@ -63,11 +78,17 @@ h1 {
 }
 
 .title {
+    color: white;
     position: absolute;
     top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     opacity: 0;
     transition: 1s;
     font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
 }
 
 .hovers {
@@ -86,14 +107,10 @@ h1 {
     opacity: 1;
 }
 
-.image-box:hover .title {
-    top: -20px;
-}
-
 .update-btn {
     position: absolute;
-    top: 5px;
-    right: 70px;
+    top: 0px;
+    left: 0px;
     opacity: 0;
 }
 
@@ -108,4 +125,47 @@ h3 {
     position: absolute;
     bottom: 5px;
     font-size: larger;
+    color: white;
+}
+
+.close-btn {
+    z-index: 2;
+}
+
+.update-btn {
+    z-index: 2;
+}
+
+.fav-btn {
+    z-index: 2;
+}
+
+@media (pointer:coarse) {
+    .close-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    .update-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    .fav-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+@media (pointer:none) {
+    .close-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .update-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .fav-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
 }

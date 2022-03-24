@@ -4,12 +4,12 @@
         'display': 'flex',
         'justify-content': 'center'
     }">
-        <h1>Alboms</h1>
+        <h1>Albums</h1>
     </div>
     <div [ngStyle]="{
         'width': '100%',
         'display': 'flex',
-        'justify-content': 'center',
+        'justify-content': 'space-evenly',
         'flex-wrap': 'wrap'
     }">
         <mat-form-field appearance="fill">
@@ -41,7 +41,7 @@
                 'height':'100%'
             }" [style.background-image]="'url('+albom.image+')'" routerLink="/image-area/{{albom.key}}"></div>
             <button (click)="onAlbomDeleteAlertBtnClick(albom.key)" class="close-btn" mat-button color="primary"><i class="fa-solid fa-xmark"></i></button>
-            <h2 class="title">{{albom.title}}</h2>
+            <h2 routerLink="/image-area/{{albom.key}}" class="title">{{albom.title}}</h2>
         </div>
     </div>
 </article>

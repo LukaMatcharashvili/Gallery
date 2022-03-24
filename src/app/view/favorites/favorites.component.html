@@ -1,0 +1,20 @@
+<article>
+    <div [ngStyle]="{
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justify-content': 'center'
+    }">
+        <h1>Favorites</h1>
+        <h1 *ngIf="favorites.length == 0">You have no favorite photos yet</h1>
+    </div>
+    <div class="favorites-area d-flex flex-wrap m-auto mt-5">
+        <div *ngFor="let favorite of favorites" class="favorite-box">
+            <div [ngStyle]="{
+                'width':'100%',
+                'height':'100%'
+            }" [style.background-image]="'url('+favorite.image+')'"></div>
+            <h2 class="title">{{favorite.title}}</h2>
+        </div>
+    </div>
+</article>

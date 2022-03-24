@@ -63,11 +63,17 @@ h1 {
 }
 
 .title {
+    color: white;
     position: absolute;
     top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     opacity: 0;
     transition: 1s;
     font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
 }
 
 .close-btn {
@@ -79,10 +85,24 @@ h1 {
 }
 
 .albom-box:hover .title {
-    top: -20px;
     opacity: 1;
 }
 
 .albom-box:hover .close-btn {
     opacity: 1;
+    z-index: 2;
+}
+
+@media (pointer:coarse) {
+    .close-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+@media (pointer:none) {
+    .close-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
 }

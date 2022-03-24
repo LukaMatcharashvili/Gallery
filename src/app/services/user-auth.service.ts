@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,6 +11,8 @@ export class UserAuthService {
 
   constructor(private snackBar: MatSnackBar, private afAuth:AngularFireAuth, private db:AngularFireDatabase, private router:Router) { }
   
+  public userStatusEmitter:EventEmitter<boolean> = new EventEmitter()
+
   userRegister(formData:any, email:any, password:any){
     let promise = this.afAuth.createUserWithEmailAndPassword(email,password);
     promise.then((user:any) => {
@@ -46,7 +48,8 @@ export class UserAuthService {
     const promise = this.afAuth.signInWithEmailAndPassword(email, password);
     promise.then(function (user:any) {
     let uid = user.user.uid;
-    localStorage['uid'] = uid
+    localStorage['uid'] = uid;
+    self.userStatusEmitter.emit(false)
     self.router.navigate(['/'])
   }).then((res) => {
     let key = localStorage['uid']
@@ -61,6 +64,7 @@ export class UserAuthService {
   userLogOut(){
     this.afAuth.signOut().then(() => {
       localStorage.removeItem('uid');
+      this.userStatusEmitter.emit(true)
       this.router.navigate(['login'])
     })
   }
