@@ -5,15 +5,16 @@
         'display': 'flex',
         'justify-content': 'center'
     }">
-        <h1>Favorites</h1>
+        <h1 *ngIf="favorites.length > 0">Favorites</h1>
         <h1 *ngIf="favorites.length == 0">You have no favorite photos yet</h1>
     </div>
     <div class="favorites-area d-flex flex-wrap m-auto mt-5">
-        <div *ngFor="let favorite of favorites" class="favorite-box">
+        <div *ngFor="let favorite of favorites;let index = index" class="favorite-box">
             <div [ngStyle]="{
                 'width':'100%',
                 'height':'100%'
             }" [style.background-image]="'url('+favorite.image+')'"></div>
+            <button (click)="deleteFromFavoritesBtnClick(favorite.imageKey, favorite.albomKey, index)" class="close-btn" mat-button color="primary"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="title">{{favorite.title}}</h2>
         </div>
     </div>

@@ -26,9 +26,6 @@ import { InspectImageComponent } from './view/inspect-image/inspect-image.compon
 import { UpdateImageComponent } from './view/update-image/update-image.component';
 import { ImageDeleteAlertComponent } from './view/image-delete-alert/image-delete-alert.component';
 import { DeleteAlbomAlertComponent } from './view/delete-albom-alert/delete-albom-alert.component';
-import { LoadingService } from './interceptor/loading.service';
-import { LoadingInterceptorService } from './interceptor/loading-interceptor.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FavoritesComponent } from './view/favorites/favorites.component';
 
 @NgModule({
@@ -63,14 +60,7 @@ import { FavoritesComponent } from './view/favorites/favorites.component';
     ReactiveFormsModule,
     ReactiveFormsModule,
   ],
-  providers: [
-    LoadingService,
-    LoadingInterceptorService,
-    {
-      useClass:LoadingInterceptorService,
-      provide:HTTP_INTERCEPTORS,
-      multi:true
-    }
-  ],  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

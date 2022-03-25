@@ -50,6 +50,7 @@ export class DatabaseService {
   addImage(formData:any, key:string){
     let uid = localStorage['uid']
     let imagesRef = this.db.list('images/' + uid + "/" + key);
+    formData.albomKey = key;
     imagesRef.push(formData)
     this.router.navigate(['image-area', key])
   }

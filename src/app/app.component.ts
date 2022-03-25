@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { delay } from 'rxjs';
-import { LoadingService } from './interceptor/loading.service';
-import { DatabaseService } from './services/database.service';
 import { UserAuthService } from './services/user-auth.service';
 import { DeleteAlertComponent } from './user/delete-alert/delete-alert.component';
 
@@ -15,16 +11,13 @@ import { DeleteAlertComponent } from './user/delete-alert/delete-alert.component
 export class AppComponent implements OnInit {
   title = 'gallery';
   panelOpenState = false;
-  loading: boolean = false;
   afterLoginDisplay!:boolean;
   
   constructor(
     private auth:UserAuthService,
-    private dialog:MatDialog,
-    private loadingService:LoadingService){}
+    private dialog:MatDialog){}
   ngOnInit(): void {
     this.checkUserStatus();
-    this.subToLoadingService();
   }
 
   checkUserStatus(){
@@ -39,13 +32,5 @@ export class AppComponent implements OnInit {
   }
   onUserDeleteAlertOpen(){
     this.dialog.open(DeleteAlertComponent)
-  }
-
-  subToLoadingService() {
-    this.loadingService.loadingEmitter
-      .pipe(delay(0))
-      .subscribe((loading: boolean) => {
-        this.loading = loading;
-      })
   }
 }
