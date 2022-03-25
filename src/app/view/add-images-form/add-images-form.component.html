@@ -10,6 +10,6 @@
         <input formControlName="description" matInput placeholder="Enter here">
     </mat-form-field>
     <div>
-        <button type="button" (click)="onAddImageBtnClick()" [disabled]="form.invalid" color="primary" mat-button>Add</button>
+        <button [disabled]="!allowUpload" type="button" (click)="onAddImageBtnClick()" [disabled]="form.invalid" color="primary" mat-button>Add</button>
     </div>
 </form>

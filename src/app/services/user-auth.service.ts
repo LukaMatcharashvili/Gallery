@@ -89,7 +89,7 @@ export class UserAuthService {
       this.router.navigate(['register'])
       localStorage.removeItem("uid")
       this.snackBar.open("User has been deleted", "Ok!");
-
+      this.userStatusEmitter.emit(true)
       this.db.database.ref('alboms/' + uid).remove()
       this.db.database.ref('images/' + uid).remove()
     })

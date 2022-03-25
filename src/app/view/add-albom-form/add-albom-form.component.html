@@ -8,5 +8,5 @@
     <input #titleInp matInput placeholder="Enter here">
 </mat-form-field>
 <div mat-dialog-actions>
-    <button (click)="onAlbomAddBtnClick(titleInp.value)" color="primary" mat-button mat-dialog-close>Add</button>
+    <button [disabled]="!allowUpload" (click)="onAlbomAddBtnClick(titleInp.value)" color="primary" mat-button mat-dialog-close>Add</button>
 </div>
