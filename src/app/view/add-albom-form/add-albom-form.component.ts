@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CloudinaryService } from 'src/app/services/cloudinary.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -18,7 +19,10 @@ export class AddAlbomFormComponent implements OnInit {
     reader.readAsDataURL(event.target.files[0])
   }
 
-  constructor(private db:DatabaseService) { }
+  constructor(
+    private db:DatabaseService,
+    private cloudinary:CloudinaryService
+    ) { }
 
   ngOnInit(): void {
     
@@ -33,30 +37,9 @@ export class AddAlbomFormComponent implements OnInit {
   }
   
   uploadInCloudinary(file:any){
-    let self = this;
-    let url = `https://api.cloudinary.com/v1_1/dr9pyz8sz/upload`;
-    let xhr = new XMLHttpRequest();
-    let fd = new FormData();
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-    xhr.onreadystatechange = function(e) {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        let response = JSON.parse(xhr.responseText);
-        let url = response.secure_url;
-        let tokens = url.split('/');
-        tokens.splice(-2, 0, 'w_150,c_scale');
-        let img = "";
-        img = tokens.join('/');
-        self.uploadedImage =  img;
-        self.allowUpload = true;
-      }else{
-        self.uploadedImage =  file;
-        self.allowUpload = true;
-      }
-    };
-    fd.append("upload_preset", "pv5ptgle");
-    fd.append('file', file);
-    xhr.send(fd);
+    this.cloudinary.uploadInCloudinary(file).subscribe((response:any) => {
+      this.uploadedImage = response.url;
+      this.allowUpload = true;
+    })
   }
 }
