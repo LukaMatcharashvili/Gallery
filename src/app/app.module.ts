@@ -27,6 +27,7 @@ import { UpdateImageComponent } from './view/update-image/update-image.component
 import { ImageDeleteAlertComponent } from './view/image-delete-alert/image-delete-alert.component';
 import { DeleteAlbomAlertComponent } from './view/delete-albom-alert/delete-albom-alert.component';
 import { FavoritesComponent } from './view/favorites/favorites.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { FavoritesComponent } from './view/favorites/favorites.component';
     UpdateImageComponent,
     ImageDeleteAlertComponent,
     DeleteAlbomAlertComponent,
-    FavoritesComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +60,7 @@ import { FavoritesComponent } from './view/favorites/favorites.component';
     FormsModule,
     ReactiveFormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

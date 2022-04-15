@@ -9,5 +9,6 @@ export const environment = {
     messagingSenderId: "1009876472615",
     appId: "1:1009876472615:web:84f449b48eb10c6b03cf02",
     measurementId: "G-B6N7SLF8PP"
-  }
+  },
+  cloudinaryBaseUrl: 'https://api.cloudinary.com/v1_1/dr9pyz8sz/upload'
 };
