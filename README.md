@@ -1,4 +1,4 @@
-# Quiz-App
+# Gallery
 
 Place where you can create your personal gallery 🐱‍🏍.
 
